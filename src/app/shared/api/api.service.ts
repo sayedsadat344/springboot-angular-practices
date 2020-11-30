@@ -44,6 +44,14 @@ export class ApiService {
       headers: this.assignHeaders(),
     });
   }
+  public putWithoutToken<T>(route: string, data: any): Observable<T> {
+    if (!route) {
+      return;
+    }
+    return this.http.put<T>(this.completeServerUrl(route), data, {
+      headers: this.assignHeaders(),
+    });
+  }
 
   
 

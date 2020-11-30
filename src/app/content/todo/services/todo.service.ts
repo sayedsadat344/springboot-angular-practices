@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/api/api.service';
 
+
 const routes = {
   all: () => `/todo/list`,
   create: () => "/todo/add",
   delete: (id: string) => `/todo/delete/${id}`,
+  statusChange: (id: string) => `/todo/update/status/${id}`
   // findByOrganization: (id: string) =>
   //   `/super-admin/users?organization_id=${id}`,
   // findOne: (id: string) => `/super-admin/users/${id}`,
@@ -32,10 +34,15 @@ export class TodoService {
     return this._api.getWithoutToken<any>(routes.all());
   }
   addTodo(todo:any): Observable<any> {
+  
    return this._api.postWithoutToken<any>(routes.create(), todo);
   }
 
   deleteTodo(id: string): Observable<any> {
     return this._api.deleteById<any>(routes.delete(id));
+  }
+
+  changeTodo(td: any): Observable<any> {
+    return this._api.putWithoutToken<any>(routes.statusChange(td.id), td);
   }
 }

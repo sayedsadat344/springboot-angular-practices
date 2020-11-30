@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { finalize } from 'rxjs/operators';
 import { BaseComponent } from '../../../../shared/base-componenet';
 import { TodoService } from '../../services/todo.service';
@@ -17,7 +18,8 @@ export class TodoComponent extends BaseComponent implements OnInit {
 
   constructor(private _todoService:TodoService,
     private formBuilder: FormBuilder,
-    private router: Router) { super();}
+    private router: Router,
+    ) { super();}
 
   ngOnInit(): void {
     this.createForm();
@@ -40,8 +42,6 @@ export class TodoComponent extends BaseComponent implements OnInit {
    * 
    */
   getTodo() {
-    console.log("the func is called");
-    
       this._todoService.getAll().subscribe(
         (data: any) => {
           if (data.length == 0) {
@@ -82,12 +82,13 @@ export class TodoComponent extends BaseComponent implements OnInit {
    * 
    */
   public deleteTd(id:any){
-    this._todoService.deleteTodo(id).subscribe(
-      (res: any) => {
+    this._todoService.deleteTodo(id)
+    .subscribe(
+      (data: any) => {
         this.ngOnInit();
       },
-      (err: any) => {
-        this.error = err;
+      (error: any) => {
+        this.error = error.error;
       }
     );
   }
@@ -97,19 +98,16 @@ export class TodoComponent extends BaseComponent implements OnInit {
    * 
    */
 
-  changeStatus(id,td){
-    // this._todoService
-    //   .addTodo(todo)
-    //   .pipe(finalize(() => {
-       
-    //   }))
-    //   .subscribe(
-    //     (data: any) => {
-    //       this.ngOnInit();
-    //     },
-    //     (error: any) => {
-    //       this.error = error.error;
-    //     }
-    //   );
+  changeStatus(td){
+    this._todoService
+      .changeTodo(td)
+      .subscribe(
+        (data: any) => {
+          this.ngOnInit();
+        },
+        (error: any) => {
+          this.error = error.error;
+        }
+      );
   }
 }

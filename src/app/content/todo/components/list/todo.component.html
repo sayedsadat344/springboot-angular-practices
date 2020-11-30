@@ -5,47 +5,47 @@
                 <div class="col-md-12">
                     <div class="card px-3">
                         <div class="card-body">
-                            <h4 class="card-title">My todo list</h4>
-                            <div class="row d-flex">
-                                <form (ngSubmit)="onSubmit()" [formGroup]="todoForm">
-                                    <div class="col-md-6">
-                                        <div>
-                                            <input type="text" class="form-control todo-list-input mr-1" 
-                                            placeholder="What do you need to do today?" formControlName="title"> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div>
-                                            <input type="date" class="form-control todo-list-input mr-1" 
-                                            formControlName="deadline"> 
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">
-                                            Add
-                                        </button> 
-                                    </div>
-                                </form>
-                            </div>
-                           
+                            <h4 class="card-title text-center">TODO LIST FORM</h4>
                             <hr>
-                            <div class="list-wrapper">
-                                <ul class="d-flex flex-column-reverse todo-list" *ngIf="todos">
-                                    <li *ngFor="let td of todos">
-                                        <div class="form-check"> 
-                                            <label class="form-check-label"> 
-                                                <input class="checkbox" type="checkbox" [disabled]="true" [checked]="td.status">
-                                                 {{td.title}}
-                                            </label> 
-                                            
-                                                <button type="button" (click)="deleteTd(td.id)" > <app-icon [icon]="icons.delete"></app-icon></button>
-                                                <button type="button" (click)="changeStatus(td.id, td)" > <app-icon [icon]="td.status?icons.save:icons.close"></app-icon></button>
-                                           
-                                        </div>                          
-                                   
-                                   
-                                </li>
-                                </ul>
+
+                            <form (ngSubmit)="onSubmit()" [formGroup]="todoForm">
+                                <div class="row">
+                                  <div class="col-md-5">
+                                    <label for="Title">Title</label>
+                                    <input type="text" class="form-control" placeholder="TODO TITLE" formControlName="title">
+                                  </div>
+                                  <div class="col-md-5">
+                                    <label for="Title">Deadline</label>
+                                    <input type="date" class="form-control" placeholder="DEADLINE" formControlName="deadline">
+                                  </div>
+                                  <div class="col-md-2" style="padding-top: 30px;">
+                                    <button type="submit" class="add btn btn-primary btn-raised btn-block">
+                                        Add
+                                    </button> 
+                                  </div>
+                                </div>
+                              </form>
+
+                              
+                            <hr>
+                            <h4 class="card-title" *ngIf="todos">Todo list</h4>
+                            <div class="list-wrapper" *ngIf="todos">
+
+                                <ul class="list-group">
+                                    <div *ngFor="let td of todos">
+                                        <li class="list-group-item" [ngClass]="{'active':!td.status}" >
+                                            {{td.title}}     -   {{td.deadline}}
+                                             <button class="btn btn-sm float-right btn-raised btn-danger ml-1" (click)="deleteTd(td.id)">
+                                                 <app-icon [icon]="icons.delete"></app-icon>
+                                             </button>
+                                             <button class="btn btn-sm btn-raised btn-info float-right" (click)="changeStatus(td)">
+                                                 <app-icon [icon]="td.status?icons.save:icons.close"></app-icon>
+                                             </button>
+                                         </li>    
+                                         <hr>
+                                    </div>
+                                                     
+                                  </ul>
                             </div>
                         </div>
                     </div>
