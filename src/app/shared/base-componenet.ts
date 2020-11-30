@@ -1,0 +1,50 @@
+import { faAddressBook, faAlignCenter,
+     faCheckCircle, faChevronCircleRight,
+      faClipboard, faClipboardList, 
+      faCloudUploadAlt, faCog, faEdit,
+       faEllipsisH, faEnvelope, faEye, 
+       faFileExcel, faFilePdf, faInfoCircle,
+        faLanguage, faListUl, faMapMarkerAlt,
+         faPencilRuler, faPhoneAlt, faPlusCircle,
+          faSignOutAlt, faSitemap, faThList, 
+          faTimesCircle, faTrashAlt, faUser,
+          faCalendar, faCircleNotch,faThumbtack
+         } from '@fortawesome/free-solid-svg-icons';
+
+export class BaseComponent{
+    icons = {
+        language: faLanguage,
+        thumb:faThumbtack,
+        calendar:faCalendar,
+        circle:faCircleNotch,
+        contact: faAddressBook,
+        address: faMapMarkerAlt,
+        add: faPlusCircle,
+        edit: faEdit,
+        cloudUpload: faCloudUploadAlt,
+        delete: faTrashAlt,
+        list: faListUl,
+        marker: faMapMarkerAlt,
+        phone: faPhoneAlt,
+        email: faEnvelope,
+        ellipsisH: faEllipsisH,
+        user: faUser,
+        settings: faCog,
+        signOut: faSignOutAlt,
+        excel: faFileExcel,
+        listUl: faListUl,
+        sitemap: faSitemap,
+        design: faPencilRuler,
+        view: faEye,
+        save: faCheckCircle,
+        options: faClipboardList,
+        chevronRight: faChevronCircleRight,
+        forms: faThList,
+        exclamation: faInfoCircle,
+        close: faTimesCircle,
+        notes: faClipboard,
+        application: faAlignCenter,
+        pdf: faFilePdf
+      };
+}
+

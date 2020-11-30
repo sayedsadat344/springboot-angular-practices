@@ -1,0 +1,56 @@
+<div class="container pt-5">
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="card px-3">
+                        <div class="card-body">
+                            <h4 class="card-title">My todo list</h4>
+                            <div class="row d-flex">
+                                <form (ngSubmit)="onSubmit()" [formGroup]="todoForm">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <input type="text" class="form-control todo-list-input mr-1" 
+                                            placeholder="What do you need to do today?" formControlName="title"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <input type="date" class="form-control todo-list-input mr-1" 
+                                            formControlName="deadline"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">
+                                            Add
+                                        </button> 
+                                    </div>
+                                </form>
+                            </div>
+                           
+                            <hr>
+                            <div class="list-wrapper">
+                                <ul class="d-flex flex-column-reverse todo-list" *ngIf="todos">
+                                    <li *ngFor="let td of todos">
+                                        <div class="form-check"> 
+                                            <label class="form-check-label"> 
+                                                <input class="checkbox" type="checkbox" [disabled]="true" [checked]="td.status">
+                                                 {{td.title}}
+                                            </label> 
+                                            
+                                                <button type="button" (click)="deleteTd(td.id)" > <app-icon [icon]="icons.delete"></app-icon></button>
+                                                <button type="button" (click)="changeStatus(td.id, td)" > <app-icon [icon]="td.status?icons.save:icons.close"></app-icon></button>
+                                           
+                                        </div>                          
+                                   
+                                   
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
